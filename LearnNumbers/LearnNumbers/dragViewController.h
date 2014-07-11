@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "TKDragView.h"
 
+
+#define UIImageWithBundlePNG(x) ([UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:(x)] ofType:@"png"]])
+
 @interface dragViewController : UIViewController<TKDragViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dragViews;
@@ -16,6 +19,8 @@
 @property (nonatomic, strong) NSMutableArray *goodFrames;
 
 @property (nonatomic, strong) NSMutableArray *badFrames;
+
+@property (nonatomic,strong) NSMutableArray *imagesarr;
 
 @property BOOL canDragMultipleViewsAtOnce;
 

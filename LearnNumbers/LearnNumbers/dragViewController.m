@@ -10,10 +10,14 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface dragViewController ()
-;
+@property(strong,nonatomic)NSArray *imagesArrayTopFrame;
+@property(strong,nonatomic)NSArray *imagesArrayBottomFrame;
+
 @end
 
 @implementation dragViewController
+@synthesize imagesArrayTopFrame;
+@synthesize imagesArrayBottomFrame;
 
 @synthesize dragViews = dragViews_;
 
@@ -43,43 +47,59 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor underPageBackgroundColor];
     
-    NSBundle *bundle = [NSBundle mainBundle];
-    
-    NSString *path = [bundle pathForResource:@"num1.png" ofType:nil];
-    
-    UIImage *image = [UIImage imageWithContentsOfFile:path];
-    
-    
-    
-    
     
     int device = 7;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         device = 3;
     }
+
     
     self.goodFrames = [NSMutableArray arrayWithCapacity:device];
     self.badFrames = [NSMutableArray arrayWithCapacity:device];
+    self.imagesarr=[NSMutableArray arrayWithCapacity:device];
     
     NSMutableArray *goodFrames = [NSMutableArray arrayWithCapacity:device];
     NSMutableArray *badFrames = [NSMutableArray arrayWithCapacity:device];
    // goodFrames=[NSMutableArray arrayWithObject:@"num1.png"];
     self.dragViews = [NSMutableArray arrayWithCapacity:device];
+    imagesArrayTopFrame = [[NSArray alloc] initWithObjects:@"num1.png", @"num2.png",@"num 3.png",@"num 4",@"num 5", nil];
     
-    for (int i = 0; i< device; i++) {
+   imagesArrayBottomFrame=[[NSArray alloc] initWithObjects:@"num1.png", @"num2.png",@"num 3.png",@"num 4",@"num 5", nil];
+    
+    for (int i = 0; i<=device; i++) {
+        
+        CGRect endFrame =   CGRectMake(30 + i * 103, 150, 50, 50);
+        UIImageView *img=[[UIImageView alloc]init];
+        [img setFrame:endFrame];
+        
+        [img setImage:[UIImage imageNamed:[imagesArrayTopFrame objectAtIndex:i]]];
+        [[self view]addSubview:img];
         
         
-        CGRect endFrame =   CGRectMake(6 + i * 103, 150, 100, 100);
+//        CGRect badFrame =   CGRectMake(30 + i * 103, 290, 50, 50);
         
-        CGRect badFrame =   CGRectMake(6 + i * 103, 290, 100, 100);
+        
+      //  [img setImage:[UIImage imageNamed:[imagesArray objectAtIndex:0]]];
+        
+//        for (int j=0; j<=device; j++)
+//        {
+//             UIImageView *img=[[UIImageView alloc]init];
+//             [img setFrame:endFrame];
+//            
+//             [img setImage:[UIImage imageNamed:[imagesArray objectAtIndex:j]]];
+//            [[self view]addSubview:img];
+//        }
+       
+        
+      
         
         [goodFrames addObject:[TKCGRect from:endFrame forView:self.view]];
-        [badFrames addObject:[TKCGRect from:badFrame forView:self.view]];
-       // NSArray *pngs = [NSArray arrayWithObjects:@"num1", nil];
+//        [badFrames addObject:[TKCGRect from:badFrame forView:self.view]];
+     
         UIView *endView = [[UIView alloc] initWithFrame:endFrame];
         endView.layer.borderColor = [UIColor greenColor].CGColor;
         endView.layer.borderWidth = 1.0f;
-      //  endView.layer.sublayers=pngs;
+
         
         [self.view addSubview:endView];
         
@@ -91,15 +111,22 @@
 //        [self.view addSubview:badView];
 //        
 //        [self.badFrames addObject:badView];
+    
+    
     }
     
     self.canUseTheSameFrameManyTimes = NO;
     self.canDragMultipleViewsAtOnce = NO;
+
     
     
-    for (int i = 0; i< device; i++) {
+    
+    for (int j = 0; j<=
+         device; j++) {
         
-        CGRect startFrame = CGRectMake(6 + i * 103, 10, 100, 100);
+        UIImage *image = [UIImage imageNamed:[imagesArrayBottomFrame objectAtIndex:j]];
+        
+        CGRect startFrame = CGRectMake(30 + j * 103, 40, 50, 50);
         
         
         TKDragView *dragView = [[TKDragView alloc] initWithImage:image
@@ -124,17 +151,17 @@
     
     CGFloat width = self.view.frame.size.width /2;
     
-    UIButton *allowMultidrag = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    allowMultidrag.frame = CGRectMake(6, 400, width*0.9 , 44);
-    [allowMultidrag setTitle:@"Multidrag : OFF" forState:UIControlStateNormal];
-    [allowMultidrag addTarget:self action:@selector(allowMultidrag:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:allowMultidrag];
-    
-    UIButton *allowTakeSameSpot = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    allowTakeSameSpot.frame = CGRectMake(width, 400, width*0.9, 44);
-    [allowTakeSameSpot addTarget:self action:@selector(allowTakeSameSpot:) forControlEvents:UIControlEventTouchUpInside];
-    [allowTakeSameSpot setTitle:@"Same frame: OFF" forState:UIControlStateNormal];
-    [self.view addSubview:allowTakeSameSpot];
+//    UIButton *allowMultidrag = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    allowMultidrag.frame = CGRectMake(6, 400, width*0.9 , 44);
+//    [allowMultidrag setTitle:@"Multidrag : OFF" forState:UIControlStateNormal];
+//    [allowMultidrag addTarget:self action:@selector(allowMultidrag:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:allowMultidrag];
+//    
+//    UIButton *allowTakeSameSpot = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    allowTakeSameSpot.frame = CGRectMake(width, 400, width*0.9, 44);
+//    [allowTakeSameSpot addTarget:self action:@selector(allowTakeSameSpot:) forControlEvents:UIControlEventTouchUpInside];
+//    [allowTakeSameSpot setTitle:@"Same frame: OFF" forState:UIControlStateNormal];
+//    [self.view addSubview:allowTakeSameSpot];
     
     
 }
@@ -176,10 +203,10 @@
     }
     
     if (self.canDragMultipleViewsAtOnce) {
-        [button setTitle:@"Multidrag: ON" forState:UIControlStateNormal];
+        //[button setTitle:@"Multidrag: ON" forState:UIControlStateNormal];
     }
     else{
-        [button setTitle:@"Multidrag: OFF" forState:UIControlStateNormal];
+        //[button setTitle:@"Multidrag: OFF" forState:UIControlStateNormal];
     }
     
     
@@ -194,10 +221,10 @@
     }
     
     if (self.canUseTheSameFrameManyTimes) {
-        [button setTitle:@"Same frame: ON" forState:UIControlStateNormal];
+        //[button setTitle:@"Same frame: ON" forState:UIControlStateNormal];
     }
     else{
-        [button setTitle:@"Same frame: OFF" forState:UIControlStateNormal];
+        //[button setTitle:@"Same frame: OFF" forState:UIControlStateNormal];
     }
 }
 
