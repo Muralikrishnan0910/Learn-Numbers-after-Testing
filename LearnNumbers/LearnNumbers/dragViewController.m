@@ -8,15 +8,27 @@
 
 #import "dragViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "RandomNumClass.h"
 
-@interface dragViewController ()
+@interface dragViewController (){
+    RandomNumClass *ranclass;
+    NSArray *getarray;
+    int ImgCount;
+    int randomImgNum[10];
+    int rancount[10];
+    int i;
+    int j;
+}
+
 @property(strong,nonatomic)NSArray *imagesArrayTopFrame;
 @property(strong,nonatomic)NSArray *imagesArrayBottomFrame;
 
 @end
 
 @implementation dragViewController
+
 @synthesize imagesArrayTopFrame;
+
 @synthesize imagesArrayBottomFrame;
 
 @synthesize dragViews = dragViews_;
@@ -45,6 +57,10 @@
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    ranclass=[[RandomNumClass alloc]init];
+    getarray=[ranclass doRandom];
+     NSLog(@"Random Numbers %@",getarray.description);
+    
     self.view.backgroundColor = [UIColor underPageBackgroundColor];
     
     
@@ -60,21 +76,40 @@
     
     NSMutableArray *goodFrames = [NSMutableArray arrayWithCapacity:device];
     NSMutableArray *badFrames = [NSMutableArray arrayWithCapacity:device];
+    
    // goodFrames=[NSMutableArray arrayWithObject:@"num1.png"];
+    
     self.dragViews = [NSMutableArray arrayWithCapacity:device];
+    
+    
+    
     imagesArrayTopFrame = [[NSArray alloc] initWithObjects:@"num1.png", @"num2.png",@"num 3.png",@"num 4",@"num 5", nil];
     
    imagesArrayBottomFrame=[[NSArray alloc] initWithObjects:@"num1.png", @"num2.png",@"num 3.png",@"num 4",@"num 5", nil];
     
-    for (int i = 0; i<=device; i++) {
+
+    
+    
+    for (i = 0; i<=device; i++) {
+        randomImgNum[i] = arc4random_uniform(5);
+        
+        rancount[i]=randomImgNum[i];
         
         CGRect endFrame =   CGRectMake(30 + i * 103, 150, 50, 50);
+      
         UIImageView *img=[[UIImageView alloc]init];
+        
+       // img.alpha=0.10;
+//        UILabel *lab=[[UILabel alloc]init];
+//        lab.text=[NSString stringWithFormat:@"  %@", [getarray objectAtIndex:i]];
+//        
+//        lab.font=[UIFont fontWithName:@"HelveticaNeue" size:25];
+//        [lab setFrame:endFrame];
+
         [img setFrame:endFrame];
         
-        [img setImage:[UIImage imageNamed:[imagesArrayTopFrame objectAtIndex:i]]];
+        [img setImage:[UIImage imageNamed:[imagesArrayTopFrame objectAtIndex:randomImgNum[i]]]];
         [[self view]addSubview:img];
-        
         
 //        CGRect badFrame =   CGRectMake(30 + i * 103, 290, 50, 50);
         
@@ -121,10 +156,10 @@
     
     
     
-    for (int j = 0; j<=
-         device; j++) {
+    for (j = 0; j<=device; j++) {
         
-        UIImage *image = [UIImage imageNamed:[imagesArrayBottomFrame objectAtIndex:j]];
+        //int randomImgNum = arc4random_uniform(5);
+        UIImage *image = [UIImage imageNamed:[imagesArrayBottomFrame objectAtIndex:rancount[j]]];
         
         CGRect startFrame = CGRectMake(30 + j * 103, 40, 50, 50);
         
@@ -149,7 +184,7 @@
         [dragView addGestureRecognizer:g];
     }
     
-    CGFloat width = self.view.frame.size.width /2;
+//    CGFloat width = self.view.frame.size.width /2;
     
 //    UIButton *allowMultidrag = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 //    allowMultidrag.frame = CGRectMake(6, 400, width*0.9 , 44);
@@ -203,10 +238,10 @@
     }
     
     if (self.canDragMultipleViewsAtOnce) {
-        //[button setTitle:@"Multidrag: ON" forState:UIControlStateNormal];
+        [button setTitle:@"Multidrag: ON" forState:UIControlStateNormal];
     }
     else{
-        //[button setTitle:@"Multidrag: OFF" forState:UIControlStateNormal];
+        [button setTitle:@"Multidrag: OFF" forState:UIControlStateNormal];
     }
     
     
@@ -221,10 +256,10 @@
     }
     
     if (self.canUseTheSameFrameManyTimes) {
-        //[button setTitle:@"Same frame: ON" forState:UIControlStateNormal];
+        [button setTitle:@"Same frame: ON" forState:UIControlStateNormal];
     }
     else{
-        //[button setTitle:@"Same frame: OFF" forState:UIControlStateNormal];
+        [button setTitle:@"Same frame: OFF" forState:UIControlStateNormal];
     }
 }
 
@@ -270,6 +305,9 @@
     UIView *view = [self.goodFrames objectAtIndex:index];
     
     if (view) view.layer.borderWidth = 4.0f;
+    view.hidden=YES;
+    
+    
     
     
 }
@@ -278,22 +316,23 @@
     UIView *view = [self.goodFrames objectAtIndex:index];
     
     if (view) view.layer.borderWidth = 1.0f;
+    view.hidden=YES;
 }
 
 
-- (void)dragViewDidEnterBadFrame:(TKDragView *)dragView atIndex:(NSInteger)index{
-    
-    UIView *view = [self.badFrames objectAtIndex:index];
-    
-    if (view) view.layer.borderWidth = 4.0f;
-}
-
-- (void)dragViewDidLeaveBadFrame:(TKDragView *)dragView atIndex:(NSInteger)index{
-    
-    UIView *view = [self.badFrames objectAtIndex:index];
-    
-    if (view) view.layer.borderWidth = 1.0f;
-}
+//- (void)dragViewDidEnterBadFrame:(TKDragView *)dragView atIndex:(NSInteger)index{
+//    
+//    UIView *view = [self.badFrames objectAtIndex:index];
+//    
+//    if (view) view.layer.borderWidth = 4.0f;
+//}
+//
+//- (void)dragViewDidLeaveBadFrame:(TKDragView *)dragView atIndex:(NSInteger)index{
+//    
+//    UIView *view = [self.badFrames objectAtIndex:index];
+//    
+//    if (view) view.layer.borderWidth = 1.0f;
+//}
 
 
 - (void)dragViewWillSwapToEndFrame:(TKDragView *)dragView atIndex:(NSInteger)index{

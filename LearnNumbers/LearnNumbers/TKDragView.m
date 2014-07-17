@@ -7,6 +7,7 @@
 //
 
 #import "TKDragView.h"
+#import "dragViewController.h"
 
 #include <mach/mach_time.h>
 #include <stdint.h>
@@ -355,7 +356,7 @@ CGFloat TKDistanceBetweenFrames(CGRect rect1, CGRect rect2){
     // Is over good or bad frame?
     
     NSInteger goodFrameIndex = [self goodFrameIndexWithPoint:pt];
-    NSInteger badFrameIndex = [self badFrameIndexWithPoint:pt];
+  //  NSInteger badFrameIndex = [self badFrameIndexWithPoint:pt];
     
     
     // Entered new good frame
@@ -416,35 +417,35 @@ CGFloat TKDistanceBetweenFrames(CGRect rect1, CGRect rect2){
     
     // Is over bad frame
     
-    if(badFrameIndex >= 0 && !isOverBadFrame_) {
-        
-        if (delegateFlags_.dragViewDidEnterBadFrame)
-            [self.delegate dragViewDidEnterBadFrame:self atIndex:badFrameIndex];
-        
-        isOverBadFrame_ = YES;
-        currentBadFrameIndex_ = badFrameIndex;
-    }
-    
-    if (isOverBadFrame_ && badFrameIndex < 0) {
-        if (delegateFlags_.dragViewDidLeaveBadFrame) 
-            [self.delegate dragViewDidLeaveBadFrame:self atIndex:currentBadFrameIndex_];
-        
-        isOverBadFrame_ = NO;
-        currentBadFrameIndex_ = -1;
-    }
-    
-    
-    // Did switch bad frames
-    if (isOverBadFrame_ && badFrameIndex != currentBadFrameIndex_){
-        if (delegateFlags_.dragViewDidLeaveBadFrame) 
-            [self.delegate dragViewDidLeaveBadFrame:self atIndex:currentBadFrameIndex_];
-        
-        if (delegateFlags_.dragViewDidEnterBadFrame)
-            [self.delegate dragViewDidEnterBadFrame:self atIndex:badFrameIndex];
-        
-        currentBadFrameIndex_ = badFrameIndex;
-
-    }
+//    if(badFrameIndex >= 0 && !isOverBadFrame_) {
+//        
+//        if (delegateFlags_.dragViewDidEnterBadFrame)
+//            [self.delegate dragViewDidEnterBadFrame:self atIndex:badFrameIndex];
+//        
+//        isOverBadFrame_ = YES;
+//        currentBadFrameIndex_ = badFrameIndex;
+//    }
+//    
+//    if (isOverBadFrame_ && badFrameIndex < 0) {
+//        if (delegateFlags_.dragViewDidLeaveBadFrame) 
+//            [self.delegate dragViewDidLeaveBadFrame:self atIndex:currentBadFrameIndex_];
+//        
+//        isOverBadFrame_ = NO;
+//        currentBadFrameIndex_ = -1;
+//    }
+//    
+//    
+//    // Did switch bad frames
+//    if (isOverBadFrame_ && badFrameIndex != currentBadFrameIndex_){
+//        if (delegateFlags_.dragViewDidLeaveBadFrame) 
+//            [self.delegate dragViewDidLeaveBadFrame:self atIndex:currentBadFrameIndex_];
+//        
+//        if (delegateFlags_.dragViewDidEnterBadFrame)
+//            [self.delegate dragViewDidEnterBadFrame:self atIndex:badFrameIndex];
+//        
+//        currentBadFrameIndex_ = badFrameIndex;
+//
+//    }
     
 }
 

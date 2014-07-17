@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E31045F197793E60018A8D2 /* RandomNumClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E31045E197793E60018A8D2 /* RandomNumClass.m */; };
+		0E310461197794A00018A8D2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3104601977949F0018A8D2 /* QuartzCore.framework */; };
 		0E38A4CD196E6AEA00CF0B8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E38A4CC196E6AEA00CF0B8D /* Foundation.framework */; };
 		0E38A4CF196E6AEA00CF0B8D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E38A4CE196E6AEA00CF0B8D /* CoreGraphics.framework */; };
 		0E38A4D1196E6AEA00CF0B8D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E38A4D0196E6AEA00CF0B8D /* UIKit.framework */; };
@@ -40,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E31045D197793E60018A8D2 /* RandomNumClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomNumClass.h; sourceTree = "<group>"; };
+		0E31045E197793E60018A8D2 /* RandomNumClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomNumClass.m; sourceTree = "<group>"; };
+		0E3104601977949F0018A8D2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0E38A4C9196E6AEA00CF0B8D /* LearnNumbers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnNumbers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E38A4CC196E6AEA00CF0B8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0E38A4CE196E6AEA00CF0B8D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -73,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E310461197794A00018A8D2 /* QuartzCore.framework in Frameworks */,
 				0E38A4CF196E6AEA00CF0B8D /* CoreGraphics.framework in Frameworks */,
 				0E38A4D1196E6AEA00CF0B8D /* UIKit.framework in Frameworks */,
 				0E38A4CD196E6AEA00CF0B8D /* Foundation.framework in Frameworks */,
@@ -114,6 +120,7 @@
 		0E38A4CB196E6AEA00CF0B8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0E3104601977949F0018A8D2 /* QuartzCore.framework */,
 				0E38A4CC196E6AEA00CF0B8D /* Foundation.framework */,
 				0E38A4CE196E6AEA00CF0B8D /* CoreGraphics.framework */,
 				0E38A4D0196E6AEA00CF0B8D /* UIKit.framework */,
@@ -132,6 +139,8 @@
 				0E38A4E2196E6AEA00CF0B8D /* dragViewController.m */,
 				0E38A501196E6B2300CF0B8D /* TKDragView.h */,
 				0E38A502196E6B2300CF0B8D /* TKDragView.m */,
+				0E31045D197793E60018A8D2 /* RandomNumClass.h */,
+				0E31045E197793E60018A8D2 /* RandomNumClass.m */,
 				0EAD1378196FD9DA004EE265 /* Images */,
 				0E38A4E4196E6AEA00CF0B8D /* Images.xcassets */,
 				0E38A4D3196E6AEA00CF0B8D /* Supporting Files */,
@@ -285,6 +294,7 @@
 			files = (
 				0E38A4DD196E6AEA00CF0B8D /* dragAppDelegate.m in Sources */,
 				0E38A4E3196E6AEA00CF0B8D /* dragViewController.m in Sources */,
+				0E31045F197793E60018A8D2 /* RandomNumClass.m in Sources */,
 				0E38A4D9196E6AEA00CF0B8D /* main.m in Sources */,
 				0E38A503196E6B2300CF0B8D /* TKDragView.m in Sources */,
 			);
